@@ -1,4 +1,4 @@
-package entities;
+package controller;
 
 public class Medico {
   private String nome;

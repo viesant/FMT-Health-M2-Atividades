@@ -1,6 +1,5 @@
 package controller;
 
-import entities.Medico;
 import enums.Operacao;
 
 import java.util.ArrayList;
