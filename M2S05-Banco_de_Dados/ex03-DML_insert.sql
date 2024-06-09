@@ -1,0 +1,103 @@
+-- [M205] Ex 3 - DML Insert das Tabelas
+-- Crie ao menos 3 comandos “insert” para cada tabela, com dados diferentes.
+-- INSERINDO DADOS EM NUTRICIONISTA:
+INSERT INTO
+	NUTRICIONISTA (NOME, CRN, ESPECIALIDADE, TEMPO_EXPERIENCIA)
+VALUES
+	('Ricardo Santos', '123456', 'nutrição', 5);
+
+INSERT INTO
+	NUTRICIONISTA (NOME, CRN, ESPECIALIDADE, TEMPO_EXPERIENCIA)
+VALUES
+	('Lalala', '111111', 'blabla', 20),
+	('Papapa', '222222', 'lelele', 6);
+
+INSERT INTO
+	NUTRICIONISTA (NOME, CRN, ESPECIALIDADE, TEMPO_EXPERIENCIA)
+VALUES
+	('Fififi', '333333', 'zzzzz', 2),
+	('Zaazaa', '444444', 'Ziizi', 8),
+	('Mumumu', '555555', 'dadad', 16);
+
+-- INSERINDO DADOS EM PACIENTE:
+INSERT INTO
+	PACIENTE (NOME, CPF, TELEFONE, EMAIL)
+VALUES
+	(
+		'Ric',
+		'01234567890',
+		'48991234567',
+		'ricardo@mail.com'
+	);
+
+INSERT INTO
+	PACIENTE (NOME, CPF, TELEFONE, EMAIL)
+VALUES
+	(
+		'Zezé',
+		'01234567890',
+		'48991234567',
+		'Zeze@mail.com'
+	);
+
+INSERT INTO
+	PACIENTE (NOME, CPF, TELEFONE, EMAIL)
+VALUES
+	(
+		'Dedé',
+		'01234567890',
+		'48991234567',
+		'Dede@mail.com'
+	);
+
+-- INSERINDO DADOS EM PACIENTE:
+INSERT INTO
+	CONSULTA (
+		ID_NUTRICIONISTA,
+		ID_PACIENTE,
+		DATA_CONSULTA,
+		OBSERVACOES
+	)
+VALUES
+	(1, 3, '06/06/2024', 'varios pontos a observar');
+
+INSERT INTO
+	CONSULTA (
+		ID_NUTRICIONISTA,
+		ID_PACIENTE,
+		DATA_CONSULTA,
+		OBSERVACOES
+	)
+VALUES
+	(
+		2,
+		1,
+		'17/03/2024',
+		'mais alguns pontos a observar'
+	);
+
+INSERT INTO
+	CONSULTA (
+		ID_NUTRICIONISTA,
+		ID_PACIENTE,
+		DATA_CONSULTA,
+		OBSERVACOES
+	)
+VALUES
+	(3, 2, '25/12/2024', 'boas observações');
+
+-- MOSTRANDO DADOS:
+SELECT
+	*
+FROM
+	NUTRICIONISTA;
+
+SELECT
+	*
+FROM
+	PACIENTE;
+
+SELECT
+	*
+FROM
+	CONSULTA;
