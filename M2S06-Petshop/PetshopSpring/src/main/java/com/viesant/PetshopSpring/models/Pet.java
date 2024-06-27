@@ -8,6 +8,15 @@ public class Pet {
   private String raca;
   private String sexo;
   private double peso;
+  private Tutor tutor;
+
+  public Tutor getTutor() {
+    return tutor;
+  }
+
+  public void setTutor(Tutor tutor) {
+    this.tutor = tutor;
+  }
 
   public Integer getId() {
     return id;

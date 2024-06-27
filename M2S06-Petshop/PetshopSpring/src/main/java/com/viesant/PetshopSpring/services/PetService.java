@@ -2,22 +2,27 @@ package com.viesant.PetshopSpring.services;
 
 import com.viesant.PetshopSpring.Repositories.PetRepository;
 import com.viesant.PetshopSpring.models.Pet;
-import org.springframework.stereotype.Service;
-
+import com.viesant.PetshopSpring.models.Tutor;
 import java.util.List;
+import org.springframework.stereotype.Service;
 
 @Service
 public class PetService {
   private final PetRepository petRepository;
-  public PetService(PetRepository petRepository){
+
+  public PetService(PetRepository petRepository, TutorService tutorService) {
     this.petRepository = petRepository;
   }
 
-  public Pet adicionar(Pet pet){
+  public Pet associarPetTutor(Integer petId, Integer tutorId){
+    return petRepository.associarPetTutorPorId(petId, tutorId);
+  }
+
+  public Pet adicionar(Pet pet) {
     return petRepository.adicionar(pet);
   }
 
-  public List<Pet> listar(){
+  public List<Pet> listar() {
     return petRepository.listar();
   }
 
@@ -28,7 +33,8 @@ public class PetService {
   public Pet editar(Pet petInfo) {
     return petRepository.editar(petInfo);
   }
-  public boolean excluir(int id){
+
+  public boolean excluir(int id) {
     return petRepository.excluir(id);
   }
 }

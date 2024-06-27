@@ -5,6 +5,7 @@ import com.viesant.PetshopSpring.services.PetService;
 import java.util.List;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -40,6 +41,11 @@ public class PetController {
   @PutMapping("/{id}")
   public Pet updatePet(@PathVariable int id, @RequestBody Pet petInfo) {
     return petService.editar(petInfo);
+  }
+
+  @PatchMapping("/{petId}/{tutorId}")
+  public Pet linkPetTutorByIds(@PathVariable Integer petId,@PathVariable Integer tutorId) {
+    return petService.associarPetTutor(petId, tutorId);
   }
 
   @DeleteMapping("/{id}")
