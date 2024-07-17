@@ -1,0 +1,9 @@
+Criando docker com banco de dados Postgres:
+docker run -d --name FMT-M2-postgres -e POSTGRES_PASSWORD=viesant -e POSTGRES_USER=viesant -e POSTGRES_DB=M2S07 -p 5432:5432 postgres:latest
+
+Parando serviço docker:
+docker stop FMT-M2-postgres
+
+Iniciando serviço docker:
+docker start FMT-M2-postgres
+
