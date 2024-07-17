@@ -9,14 +9,11 @@ import jakarta.persistence.Table;
 import lombok.Data;
 
 @Entity
-//@Data
 @Table(name = "endereco")
-//@NoArgsConstructor
-//@AllArgsConstructor
 public class EnderecoEntity {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private long id;
+  private Long id;
 
   @Column(nullable = false)
   private String logradouro;

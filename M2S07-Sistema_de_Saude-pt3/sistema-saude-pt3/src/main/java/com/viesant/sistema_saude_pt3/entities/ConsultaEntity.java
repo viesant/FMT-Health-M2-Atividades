@@ -13,14 +13,11 @@ import lombok.Data;
 import java.time.LocalDate;
 
 @Entity
-//@Data
 @Table(name = "consulta")
-//@NoArgsConstructor
-//@AllArgsConstructor
 public class ConsultaEntity {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private long id;
+  private Long id;
 
   private LocalDate data;
 

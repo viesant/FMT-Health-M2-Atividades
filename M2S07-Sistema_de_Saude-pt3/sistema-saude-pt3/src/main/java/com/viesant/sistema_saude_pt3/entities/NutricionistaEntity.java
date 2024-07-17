@@ -11,14 +11,11 @@ import jakarta.persistence.Table;
 import lombok.Data;
 
 @Entity
-//@Data
 @Table(name = "nutricionista")
-//@NoArgsConstructor
-//@AllArgsConstructor
 public class NutricionistaEntity {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private long id;
+  private Long id;
 
   @Column(nullable = false)
   private String nome;

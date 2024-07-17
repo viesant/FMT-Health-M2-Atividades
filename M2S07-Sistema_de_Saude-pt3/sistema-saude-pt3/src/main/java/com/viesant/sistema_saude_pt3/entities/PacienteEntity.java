@@ -8,19 +8,15 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import lombok.Data;
 
 import java.time.LocalDate;
 
 @Entity
-//@Data
 @Table(name = "paciente")
-//@NoArgsConstructor
-//@AllArgsConstructor
 public class PacienteEntity {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private long id;
+  private Long id;
 
   @Column(nullable = false)
   private String nome;
@@ -31,5 +27,4 @@ public class PacienteEntity {
   @ManyToOne
   @JoinColumn(name = "endereco_id", nullable = false)
   private EnderecoEntity endereco;
-
 }
