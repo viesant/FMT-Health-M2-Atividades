@@ -19,9 +19,8 @@ public class PacienteService {
   private final EnderecoRepository enderecoRepository;
 
   // criar paciente
-  public PacienteResponse criarPaciente(PacienteEntity paciente) {
-    EnderecoEntity endereco =
-        enderecoRepository.findById(paciente.getEndereco().getId()).orElse(null);
+  public PacienteResponse criaPaciente(PacienteRequest paciente) {
+    EnderecoEntity endereco = enderecoRepository.findById(paciente.getEnderecoId()).orElse(null);
     if (endereco != null) {
       PacienteEntity pacienteEntity = new PacienteEntity();
       pacienteEntity.setNome(paciente.getNome());
@@ -35,10 +34,15 @@ public class PacienteService {
   }
 
   // busca pacientes
-  public List<PacienteResponse> buscarPacientes() {
+  public List<PacienteResponse> buscaPacientes() {
     return pacienteRepository.findAll().stream()
         .map(this::convertToResponse)
         .collect(Collectors.toList());
+  }
+
+  // buscar paciente por ID
+  public PacienteResponse buscaPacientePorId(Long id) {
+    return pacienteRepository.findById(id).map(this::convertToResponse).orElse(null);
   }
 
   // atualizar paciente
@@ -62,11 +66,6 @@ public class PacienteService {
     if (pacienteRepository.existsById(id)) {
       pacienteRepository.deleteById(id);
     }
-  }
-
-  // buscar paciente por ID
-  public PacienteResponse buscarPacientePorId(Long id) {
-    return pacienteRepository.findById(id).map(this::convertToResponse).orElse(null);
   }
 
   // converte entidade em responseDTO
