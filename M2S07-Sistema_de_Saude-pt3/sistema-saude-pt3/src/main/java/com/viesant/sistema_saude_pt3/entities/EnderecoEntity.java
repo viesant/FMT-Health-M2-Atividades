@@ -9,6 +9,7 @@ import jakarta.persistence.Table;
 import lombok.Data;
 
 @Entity
+@Data
 @Table(name = "endereco")
 public class EnderecoEntity {
   @Id

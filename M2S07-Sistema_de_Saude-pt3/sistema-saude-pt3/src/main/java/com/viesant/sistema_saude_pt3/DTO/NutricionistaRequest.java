@@ -4,12 +4,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDate;
-
 @NoArgsConstructor
 @Getter @Setter
-public class PacienteRequestDTO {
+public class NutricionistaRequest {
   private String nome;
-  private LocalDate nascimento;
+  private String matricula;
+  private String especialidade;
   private Long enderecoId;
 }

@@ -13,6 +13,7 @@ import lombok.Data;
 import java.time.LocalDate;
 
 @Entity
+@Data
 @Table(name = "consulta")
 public class ConsultaEntity {
   @Id
