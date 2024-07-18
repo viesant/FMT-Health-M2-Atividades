@@ -14,5 +14,7 @@ public class ConsultaResponse {
   private Long id;
   private LocalDate data;
   private Long pacienteId;
+  private String nomePaciente;
   private Long nutricionistaId;
+  private String nomeNutricionista;
 }

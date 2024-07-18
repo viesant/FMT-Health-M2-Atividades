@@ -10,6 +10,8 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 
+import java.util.List;
+
 @Entity
 @Data
 @Table(name = "nutricionista")
@@ -26,6 +28,11 @@ public class NutricionistaEntity {
 
   @Column(nullable = false, length = 60)
   private String especialidade;
+
+  @Column(nullable = false)
+  private int anosExperiencia;
+
+  private List<String> certificacao;
 
   @ManyToOne
   @JoinColumn(name = "endereco_id", nullable = false)

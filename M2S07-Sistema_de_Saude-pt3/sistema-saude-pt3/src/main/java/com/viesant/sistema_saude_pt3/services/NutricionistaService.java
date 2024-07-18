@@ -17,6 +17,18 @@ public class NutricionistaService {
   private final NutricionistaRepository nutricionistaRepository;
   private final EnderecoRepository enderecoRepository;
 
+  // Adicionar ano a tempo de experiência - Adicionar 1 aos anos de experiência
+  public NutricionistaResponse incAnosExperiencia(long id){
+    NutricionistaEntity nutricionistaEntity = nutricionistaRepository.findById(id).orElse(null);
+    if (nutricionistaEntity != null){
+      nutricionistaEntity.setAnosExperiencia(nutricionistaEntity.getAnosExperiencia()+1);
+
+      NutricionistaEntity entitySalva = nutricionistaRepository.save(nutricionistaEntity);
+      return convertToResponse(entitySalva);
+    }
+    return null;
+  }
+
   // criar nutricionista
   public NutricionistaResponse criaNutricionista(NutricionistaRequest nutricionistaRequest) {
 
@@ -25,10 +37,16 @@ public class NutricionistaService {
             .findById(nutricionistaRequest.getEnderecoId())
             .orElseThrow(() -> new RuntimeException("Endereço não encontrado"));
 
+    if (nutricionistaRepository.existsByNome(nutricionistaRequest.getNome())){
+     throw new RuntimeException("Nome Nutricionista já existe!");
+    }
+
     NutricionistaEntity nutricionistaEntity = new NutricionistaEntity();
     nutricionistaEntity.setNome(nutricionistaRequest.getNome());
     nutricionistaEntity.setMatricula(nutricionistaRequest.getMatricula());
     nutricionistaEntity.setEspecialidade(nutricionistaRequest.getEspecialidade());
+    nutricionistaEntity.setAnosExperiencia(nutricionistaRequest.getAnosExperiencia());
+    nutricionistaEntity.setCertificacao(nutricionistaRequest.getCertificacao());
     nutricionistaEntity.setEndereco(endereco);
 
     NutricionistaEntity entitySalva = nutricionistaRepository.save(nutricionistaEntity);
@@ -57,6 +75,8 @@ public class NutricionistaService {
       nutricionistaEntity.setNome(nutricionistaRequest.getNome());
       nutricionistaEntity.setEspecialidade(nutricionistaRequest.getEspecialidade());
       nutricionistaEntity.setMatricula(nutricionistaRequest.getMatricula());
+      nutricionistaEntity.setAnosExperiencia(nutricionistaRequest.getAnosExperiencia());
+      nutricionistaEntity.setCertificacao(nutricionistaRequest.getCertificacao());
       nutricionistaEntity.setEndereco(enderecoEntity);
 
       NutricionistaEntity nutricionistaSalvo = nutricionistaRepository.save(nutricionistaEntity);
@@ -79,6 +99,8 @@ public class NutricionistaService {
         nutricionistaEntity.getNome(),
         nutricionistaEntity.getMatricula(),
         nutricionistaEntity.getEspecialidade(),
+        nutricionistaEntity.getAnosExperiencia(),
+        nutricionistaEntity.getCertificacao(),
         nutricionistaEntity.getEndereco().getId());
   }
 }

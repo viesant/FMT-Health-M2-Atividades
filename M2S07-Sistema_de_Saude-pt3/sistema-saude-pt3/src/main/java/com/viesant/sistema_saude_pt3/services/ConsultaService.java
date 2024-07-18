@@ -92,6 +92,8 @@ public class ConsultaService {
         consultaEntity.getId(),
         consultaEntity.getData(),
         consultaEntity.getPaciente().getId(),
-        consultaEntity.getNutricionista().getId());
+        consultaEntity.getPaciente().getNome(),
+        consultaEntity.getNutricionista().getId(),
+        consultaEntity.getNutricionista().getNome());
   }
 }
