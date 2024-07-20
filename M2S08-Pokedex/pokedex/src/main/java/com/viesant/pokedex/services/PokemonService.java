@@ -24,4 +24,15 @@ public class PokemonService {
     Pokemon pokemon = map(pokemonCapturado);
     return pokemonRepository.save(pokemon);
   }
+
+  public Pokemon atualizarPokemon(Long id, PokemonCapturadoRequest pokemonCapturado) {
+    Pokemon pokemon = pokemonRepository.findById(id).orElse(null);
+
+    if (pokemon != null) {
+      pokemon = map(pokemonCapturado);
+      pokemon.setId(id);
+      return pokemonRepository.save(pokemon);
+    }
+    return null;
+  }
 }
