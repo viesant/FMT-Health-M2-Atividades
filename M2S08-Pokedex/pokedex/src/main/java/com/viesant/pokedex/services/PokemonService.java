@@ -35,4 +35,12 @@ public class PokemonService {
     }
     return null;
   }
+
+  public Boolean deletarPokemon(Long id) {
+    if (pokemonRepository.existsById(id)) {
+      pokemonRepository.deleteById(id);
+      return true;
+    }
+    return false;
+  }
 }

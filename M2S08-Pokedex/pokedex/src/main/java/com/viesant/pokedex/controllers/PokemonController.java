@@ -33,4 +33,8 @@ public class PokemonController {
     return pokemonService.atualizarPokemon(id, pokemonCapturado);
   }
 
+  @DeleteMapping("/{id}")
+  public Boolean deletarPokemon(@PathVariable Long id) {
+    return pokemonService.deletarPokemon(id);
+  }
 }
