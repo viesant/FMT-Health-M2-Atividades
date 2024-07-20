@@ -1,6 +1,7 @@
 package com.viesant.pokedex.mappers;
 
 import com.viesant.pokedex.dto.PokemonCapturadoRequest;
+import com.viesant.pokedex.dto.PokemonResponse;
 import com.viesant.pokedex.dto.PokemonVistoRequest;
 import com.viesant.pokedex.models.Pokemon;
 
@@ -13,7 +14,7 @@ public class PokemonMapper {
     target.setNome(source.getNome());
     target.setImagemURL(source.getImagemURL());
     target.setHabitat(source.getHabitat());
-
+    target.setCapturado(false);
     return target;
   }
 
@@ -29,6 +30,15 @@ public class PokemonMapper {
     target.setAltura(source.getAltura());
     target.setPeso(source.getPeso());
     target.setCapturado(true);
+    return target;
+  }
+
+  public static PokemonResponse map(Pokemon source) {
+    PokemonResponse target = new PokemonResponse();
+    target.setId(source.getId());
+    target.setNumero(source.getNumero());
+    target.setNome(source.getNome());
+    target.setCapturado(source.getCapturado());
     return target;
   }
 }

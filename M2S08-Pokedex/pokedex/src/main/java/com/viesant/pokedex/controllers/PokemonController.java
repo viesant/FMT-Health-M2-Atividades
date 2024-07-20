@@ -1,9 +1,11 @@
 package com.viesant.pokedex.controllers;
 
 import com.viesant.pokedex.dto.PokemonCapturadoRequest;
+import com.viesant.pokedex.dto.PokemonResponse;
 import com.viesant.pokedex.dto.PokemonVistoRequest;
 import com.viesant.pokedex.models.Pokemon;
 import com.viesant.pokedex.services.PokemonService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,7 +32,8 @@ public class PokemonController {
   }
 
   @PutMapping("/{id}")
-  public Pokemon atualizarPokemon(@PathVariable Long id, @RequestBody PokemonCapturadoRequest pokemonCapturado){
+  public Pokemon atualizarPokemon(
+      @PathVariable Long id, @RequestBody PokemonCapturadoRequest pokemonCapturado) {
     return pokemonService.atualizarPokemon(id, pokemonCapturado);
   }
 
@@ -42,5 +45,10 @@ public class PokemonController {
   @GetMapping("/{id}")
   public Pokemon buscarPokemonPorId(@PathVariable Long id) {
     return pokemonService.buscarPokemonPorId(id);
+  }
+
+  @GetMapping
+  public List<PokemonResponse> listarPokemon() {
+    return pokemonService.listarPokemon();
   }
 }
