@@ -43,4 +43,8 @@ public class PokemonService {
     }
     return false;
   }
+
+  public Pokemon buscarPokemonPorId(Long id) {
+    return pokemonRepository.findById(id).orElse(null);
+  }
 }
