@@ -1,35 +1,38 @@
 package com.viesant.pokedex.models;
 
+import com.viesant.pokedex.enums.TipoEnum;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "pokemon")
 public class Pokemon {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
+  @Id private Integer numero;
 
-  private Integer numero;
+  @Column(nullable = false, unique = true)
   private String nome;
+
   private String descricao;
-  private String imagemURL;
-  private String tipo;
+
+  @Column(nullable = false)
+  private String imagemUrl;
+
+  @Enumerated(value = EnumType.STRING)
+  private TipoEnum tipo;
+
   private String categoria;
+
+  @Column(nullable = false)
   private String habitat;
+
   private Float altura;
   private Float peso;
   private Boolean capturado;
-
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
 
   public Integer getNumero() {
     return numero;
@@ -55,19 +58,19 @@ public class Pokemon {
     this.descricao = descricao;
   }
 
-  public String getImagemURL() {
-    return imagemURL;
+  public String getImagemUrl() {
+    return imagemUrl;
   }
 
-  public void setImagemURL(String imagemURL) {
-    this.imagemURL = imagemURL;
+  public void setImagemUrl(String imagemUrl) {
+    this.imagemUrl = imagemUrl;
   }
 
-  public String getTipo() {
+  public TipoEnum getTipo() {
     return tipo;
   }
 
-  public void setTipo(String tipo) {
+  public void setTipo(TipoEnum tipo) {
     this.tipo = tipo;
   }
 

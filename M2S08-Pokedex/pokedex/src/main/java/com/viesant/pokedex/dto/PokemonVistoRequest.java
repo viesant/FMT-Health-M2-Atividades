@@ -1,10 +1,13 @@
 package com.viesant.pokedex.dto;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 public class PokemonVistoRequest {
-  private Integer numero;
-  private String nome;
-  private String imagemURL;
-  private String habitat;
+  @NotNull private Integer numero;
+  @NotBlank private String nome;
+  @NotBlank private String imagemURL;
+  @NotBlank private String habitat;
 
   public PokemonVistoRequest() {}
 

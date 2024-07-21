@@ -1,15 +1,19 @@
 package com.viesant.pokedex.dto;
 
+import com.viesant.pokedex.enums.TipoEnum;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 public class PokemonCapturadoRequest {
-  private Integer numero;
-  private String nome;
-  private String descricao;
-  private String imagemURL;
-  private String tipo;
-  private String categoria;
-  private String habitat;
-  private Float altura;
-  private Float peso;
+  @NotNull private Integer numero;
+  @NotBlank private String nome;
+  @NotBlank private String descricao;
+  @NotBlank private String imagemURL;
+  @NotNull private TipoEnum tipo;
+  @NotBlank private String categoria;
+  @NotBlank private String habitat;
+  @NotNull private Float altura;
+  @NotNull private Float peso;
 
   public Integer getNumero() {
     return numero;
@@ -43,11 +47,11 @@ public class PokemonCapturadoRequest {
     this.imagemURL = imagemURL;
   }
 
-  public String getTipo() {
+  public @NotNull TipoEnum getTipo() {
     return tipo;
   }
 
-  public void setTipo(String tipo) {
+  public void setTipo(@NotNull TipoEnum tipo) {
     this.tipo = tipo;
   }
 

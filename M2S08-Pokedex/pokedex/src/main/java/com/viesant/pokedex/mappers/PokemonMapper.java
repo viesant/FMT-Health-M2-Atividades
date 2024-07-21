@@ -9,21 +9,25 @@ public class PokemonMapper {
   private PokemonMapper() {}
 
   public static Pokemon map(PokemonVistoRequest source) {
+    if (source == null) return null;
+
     Pokemon target = new Pokemon();
     target.setNumero(source.getNumero());
     target.setNome(source.getNome());
-    target.setImagemURL(source.getImagemURL());
+    target.setImagemUrl(source.getImagemURL());
     target.setHabitat(source.getHabitat());
     target.setCapturado(false);
     return target;
   }
 
   public static Pokemon map(PokemonCapturadoRequest source) {
+    if (source == null) return null;
+
     Pokemon target = new Pokemon();
     target.setNumero(source.getNumero());
     target.setNome(source.getNome());
     target.setDescricao(source.getDescricao());
-    target.setImagemURL(source.getImagemURL());
+    target.setImagemUrl(source.getImagemURL());
     target.setTipo(source.getTipo());
     target.setCategoria(source.getCategoria());
     target.setHabitat(source.getHabitat());
@@ -34,8 +38,9 @@ public class PokemonMapper {
   }
 
   public static PokemonResponse map(Pokemon source) {
+    if (source == null) return null;
+
     PokemonResponse target = new PokemonResponse();
-    target.setId(source.getId());
     target.setNumero(source.getNumero());
     target.setNome(source.getNome());
     target.setCapturado(source.getCapturado());
