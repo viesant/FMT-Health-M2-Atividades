@@ -12,10 +12,15 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class TokenService {
-  private static long TEMPO_EXPIRACAO = 36000L;
+
+
+  public static long TEMPO_EXPIRACAO = 36000L;
   private final JwtEncoder jwtEncoder;
   private final JwtDecoder jwtDecoder;
 
+  public static long getTempoExpiracao() {
+    return TEMPO_EXPIRACAO;
+  }
   // ricardo123, ADMIN, [create, read, delete, update]
   // user1, NUTRI, [read]
   //  public String geraToken(String username, String role, List<String> scopes) {
