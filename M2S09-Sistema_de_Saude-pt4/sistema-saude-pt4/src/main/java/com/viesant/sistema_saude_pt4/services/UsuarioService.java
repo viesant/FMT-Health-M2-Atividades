@@ -17,10 +17,9 @@ public class UsuarioService {
   private final BCryptPasswordEncoder passwordEncoder;
 
   public UsuarioResponse cadastraUsuario(UsuarioRequest newUser) {
-    usuarioRepository
-        .findByUsername(newUser.getUsername())
-        .orElseThrow(
-            () -> new RuntimeException("Já existe usuário com nome: " + newUser.getUsername()));
+    if (usuarioRepository.findByUsername(newUser.getUsername()).isPresent()) {
+      throw new RuntimeException("Já existe usuário com nome: " + newUser.getUsername());
+    }
 
     UsuarioEntity usuario = new UsuarioEntity();
     usuario.setUsername(newUser.getUsername());
@@ -46,7 +45,8 @@ public class UsuarioService {
                         "Usuário não existe com o nome " + loginRequest.getUsername()));
 
     if (!passwordEncoder.matches(loginRequest.getPassword(), usuarioEntity.getPassword())) {
-      throw new RuntimeException("Senha errada para usuário com nome " + loginRequest.getUsername());
+      throw new RuntimeException(
+          "Senha errada para usuário com nome " + loginRequest.getUsername());
     }
 
     return usuarioEntity;

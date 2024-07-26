@@ -39,20 +39,20 @@ public class TokenService {
     return jwtEncoder.encode(JwtEncoderParameters.from(claimsSet)).getTokenValue();
   }
 
-  public void validaToken(String token, String role) {
-    //    if (token.isBlank()) {
-    //      throw new RuntimeException("Token Vazio");
-    //    }
-
-    Jwt jwtDecoded = jwtDecoder.decode(token);
-
-    String claimSub = jwtDecoded.getSubject();
-    if (!jwtDecoded.getClaimAsString("role").equals(role)) {
-      throw new RuntimeException("Usuário " + claimSub + " não tem acesso a " + role);
-    }
-
-    if (jwtDecoded.getExpiresAt().isBefore(Instant.now())) {
-      throw new RuntimeException("Token Expirado");
-    }
-  }
+//  public void validaToken(String token, String role) {
+//    //    if (token.isBlank()) {
+//    //      throw new RuntimeException("Token Vazio");
+//    //    }
+//
+//    Jwt jwtDecoded = jwtDecoder.decode(token);
+//
+//    String claimSub = jwtDecoded.getSubject();
+//    if (!jwtDecoded.getClaimAsString("role").equals(role)) {
+//      throw new RuntimeException("Usuário " + claimSub + " não tem acesso a " + role);
+//    }
+//
+//    if (jwtDecoded.getExpiresAt().isBefore(Instant.now())) {
+//      throw new RuntimeException("Token Expirado");
+//    }
+//  }
 }

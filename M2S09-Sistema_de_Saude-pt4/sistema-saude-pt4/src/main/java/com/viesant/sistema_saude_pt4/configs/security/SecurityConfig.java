@@ -38,7 +38,7 @@ public class SecurityConfig {
     http.csrf(AbstractHttpConfigurer::disable)
         .authorizeHttpRequests(
             auth ->
-                    auth.requestMatchers( "/enderecos", "/nutricionistas", "pacientes")
+                    auth.requestMatchers( HttpMethod.POST,"/usuarios","/login")
                             .permitAll()
                     //                    .permitAll() // Permite acesso público a algumas URLs
                     //                        .requestMatchers("")

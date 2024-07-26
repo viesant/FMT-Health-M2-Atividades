@@ -6,6 +6,7 @@ import com.viesant.sistema_saude_pt4.DTO.UsuarioRequest;
 import com.viesant.sistema_saude_pt4.DTO.UsuarioResponse;
 import com.viesant.sistema_saude_pt4.services.UsuarioService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,9 +20,9 @@ public class UsuarioController {
 
   private final UsuarioService usuarioService;
 
-  @PostMapping("/cadastro")
+  @PostMapping()
   public ResponseEntity<UsuarioResponse> cadastrarUsuario(@RequestBody UsuarioRequest newUser) {
-
-    return ResponseEntity.ok(usuarioService.cadastraUsuario(newUser));
+    UsuarioResponse usuarioResponse = usuarioService.cadastraUsuario(newUser);
+    return new ResponseEntity<>(usuarioResponse, HttpStatus.CREATED);
   }
 }
