@@ -1,0 +1,62 @@
+Start)
+copiar projeto 7 e atualizar nome para semana 9
+mudar banco de dados (se necessário)
+compilar pra ver se tá rodando
+testar endpoints
+
+[M2S09] Ex. 1 - Configuração Básica de Segurança
+add dependencias:
+-Spring security
+-OAuth2 Resouce Server
+
+<dependency>
+ <groupId>org.springframework.boot</groupId>
+ <artifactId>spring-boot-starter-security</artifactId>
+</dependency>
+
+
+pré-existentes:
+-Spring Web
+-Spring Data JPA
+-PostgreSQL Driver
+-Lombok (opcional)
+
+- em application.properties:
+add
+spring.security.user.name=viesant
+spring.security.user.password=viesant
+
+- em insomnia:
+get->Auth->basic: username e password
+
+- teste send 
+
+[M2S09] Ex. 2 - Implementação de JWT
+
+add dependencia:
+<dependency>
+ <groupId>org.springframework.boot</groupId>
+ <artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
+</dependency>
+
+
+em application.properties:
+-tirar user e senha, e coloca as chaves jwt:
+jwt.private.key = classpath:private-key.pem
+jwt.public.key = classpath:public-key.pem
+-colar as chaves na pasta resources
+
+-criar serviço token:
+services.TokenService
+gerarToken (userDTO?)
+validarToken
+
+-criar configuração de segurança
+configs.SecurityConfig
+  encoder
+  decoder
+  filter
+
+
+
+
