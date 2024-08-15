@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.viesant</groupId>
-	<artifactId>sistema-saude-pt3</artifactId>
+	<artifactId>sistema-saude-pt4</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>sistema-saude-pt3</name>
-	<description>M2S07 atividades sistema saude parte 3</description>
+	<name>sistema-saude-pt4</name>
+	<description>M2S09 atividades sistema saude parte 4</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -57,6 +57,10 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
 		</dependency>
 	</dependencies>
 
