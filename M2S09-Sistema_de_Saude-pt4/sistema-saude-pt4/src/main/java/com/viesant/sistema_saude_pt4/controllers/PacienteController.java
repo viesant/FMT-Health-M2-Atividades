@@ -7,6 +7,7 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,6 +24,7 @@ public class PacienteController {
   private final PacienteService pacienteService;
 
   @PostMapping
+  @PreAuthorize("hasAnyAuthority('SCOPE_ADMIN', 'SCOPE_NUTRICIONISTA')")
   public ResponseEntity<PacienteResponse> criarPaciente(
       @RequestBody PacienteRequest pacienteRequest) {
     PacienteResponse pacienteResponse = pacienteService.criaPaciente(pacienteRequest);
@@ -30,12 +32,14 @@ public class PacienteController {
   }
 
   @GetMapping
+  @PreAuthorize("hasAnyAuthority('SCOPE_ADMIN', 'SCOPE_NUTRICIONISTA')")
   public ResponseEntity<List<PacienteResponse>> buscarPacientes() {
     List<PacienteResponse> pacientes = pacienteService.buscaPacientes();
     return new ResponseEntity<>(pacientes, HttpStatus.OK);
   }
 
   @GetMapping("/{id}")
+  @PreAuthorize("hasAnyAuthority('SCOPE_ADMIN', 'SCOPE_NUTRICIONISTA', 'SCOPE_PACIENTE')")
   public ResponseEntity<PacienteResponse> buscarPacientePorId(@PathVariable Long id) {
     PacienteResponse pacienteResponse = pacienteService.buscaPacientePorId(id);
     if (pacienteResponse != null) {
@@ -46,6 +50,7 @@ public class PacienteController {
   }
 
   @PutMapping("/{id}")
+  @PreAuthorize("hasAnyAuthority('SCOPE_ADMIN', 'SCOPE_NUTRICIONISTA')")
   public ResponseEntity<PacienteResponse> atualizarPaciente(
       @PathVariable Long id, @RequestBody PacienteRequest pacienteRequest) {
     PacienteResponse pacienteAtualizado = pacienteService.atualizaPaciente(id, pacienteRequest);
@@ -57,6 +62,7 @@ public class PacienteController {
   }
 
   @DeleteMapping("/{id}")
+  @PreAuthorize("hasAnyAuthority('SCOPE_ADMIN', 'SCOPE_NUTRICIONISTA')")
   public ResponseEntity<Void> deletarPaciente(@PathVariable Long id) {
     pacienteService.deletaPaciente(id);
     return new ResponseEntity<>(HttpStatus.NO_CONTENT);

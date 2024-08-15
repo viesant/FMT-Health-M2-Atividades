@@ -7,6 +7,7 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,6 +24,7 @@ public class ConsultaController {
   private final ConsultaService consultaService;
 
   @PostMapping
+  @PreAuthorize("hasAnyAuthority('SCOPE_ADMIN', 'SCOPE_NUTRICIONISTA')")
   public ResponseEntity<ConsultaResponse> criarConsulta(
       @RequestBody ConsultaRequest consultaRequest) {
     try {
@@ -34,12 +36,14 @@ public class ConsultaController {
   }
 
   @GetMapping
+  @PreAuthorize("hasAnyAuthority('SCOPE_ADMIN', 'SCOPE_NUTRICIONISTA')")
   public ResponseEntity<List<ConsultaResponse>> buscarConsultas() {
     List<ConsultaResponse> consultas = consultaService.buscaConsultas();
     return new ResponseEntity<>(consultas, HttpStatus.OK);
   }
 
   @GetMapping("/{id}")
+  @PreAuthorize("hasAnyAuthority('SCOPE_ADMIN', 'SCOPE_NUTRICIONISTA', 'SCOPE_PACIENTE')")
   public ResponseEntity<ConsultaResponse> buscarConsultaPorId(@PathVariable Long id) {
     try {
       ConsultaResponse consultaResponse = consultaService.buscaConsultaPorId(id);
@@ -50,6 +54,7 @@ public class ConsultaController {
   }
 
   @PutMapping("/{id}")
+  @PreAuthorize("hasAnyAuthority('SCOPE_ADMIN', 'SCOPE_NUTRICIONISTA')")
   public ResponseEntity<ConsultaResponse> atualizarConsulta(
       @PathVariable Long id, @RequestBody ConsultaRequest consultaRequest) {
     try {
@@ -61,6 +66,7 @@ public class ConsultaController {
   }
 
   @DeleteMapping("/{id}")
+  @PreAuthorize("hasAnyAuthority('SCOPE_ADMIN', 'SCOPE_NUTRICIONISTA')")
   public ResponseEntity<Void> deletarConsulta(@PathVariable Long id) {
     try {
       consultaService.deletarConsulta(id);

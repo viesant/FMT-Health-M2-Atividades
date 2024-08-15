@@ -7,6 +7,7 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -25,6 +26,7 @@ public class NutricionistaController {
   private final NutricionistaService nutricionistaService;
 
   @PostMapping
+  @PreAuthorize("hasAnyAuthority('SCOPE_ADMIN')")
   public ResponseEntity<NutricionistaResponse> criarNutricionista(
       @RequestBody NutricionistaRequest nutricionistaRequest) {
     try {
@@ -37,12 +39,14 @@ public class NutricionistaController {
   }
 
   @GetMapping
+  @PreAuthorize("hasAnyAuthority('SCOPE_ADMIN')")
   public ResponseEntity<List<NutricionistaResponse>> buscarNutricionistas() {
     List<NutricionistaResponse> nutricionistas = nutricionistaService.buscaNutricionistas();
     return new ResponseEntity<>(nutricionistas, HttpStatus.OK);
   }
 
   @GetMapping("/{id}")
+  @PreAuthorize("hasAnyAuthority('SCOPE_ADMIN', 'SCOPE_NUTRICIONISTA')")
   public ResponseEntity<NutricionistaResponse> buscarNutricionistaPorId(@PathVariable Long id) {
     NutricionistaResponse nutricionistaResponse = nutricionistaService.buscaNutricionistaPorId(id);
     if (nutricionistaResponse != null) {
@@ -53,6 +57,7 @@ public class NutricionistaController {
   }
 
   @PutMapping("/{id}")
+  @PreAuthorize("hasAnyAuthority('SCOPE_ADMIN', 'SCOPE_NUTRICIONISTA')")
   public ResponseEntity<NutricionistaResponse> atualizarNutricionista(
       @PathVariable Long id, @RequestBody NutricionistaRequest nutricionistaRequest) {
     NutricionistaResponse nutricionistaAtualizado =
@@ -65,6 +70,7 @@ public class NutricionistaController {
   }
 
   @DeleteMapping("/{id}")
+  @PreAuthorize("hasAnyAuthority('SCOPE_ADMIN')")
   public ResponseEntity<Void> deletarNutricionista(@PathVariable Long id) {
     if (nutricionistaService.buscaNutricionistaPorId(id) != null) {
       nutricionistaService.deletaNutricionista(id);
@@ -75,6 +81,7 @@ public class NutricionistaController {
   }
 
   @PatchMapping("/{id}/inc-anos-experiencia")
+  @PreAuthorize("hasAnyAuthority('SCOPE_ADMIN')")
   public ResponseEntity<NutricionistaResponse> incrementarAnosExperiencia(@PathVariable Long id) {
     NutricionistaResponse nutricionistaResponse = nutricionistaService.incAnosExperiencia(id);
     if (nutricionistaResponse != null) {
