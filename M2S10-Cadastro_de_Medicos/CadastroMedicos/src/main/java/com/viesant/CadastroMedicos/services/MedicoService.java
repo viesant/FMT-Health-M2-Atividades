@@ -51,10 +51,7 @@ public class MedicoService {
   }
 
   public Page<MedicoFilterResponse> listarMedicos(
-      String nome,
-      EspecialidadesEnum especialidade,
-      LocalDate dataNascimento,
-      Pageable pageable) {
+      String nome, EspecialidadesEnum especialidade, LocalDate dataNascimento, Pageable pageable) {
 
     Page<Medico> medicosPage =
         medicoRepository.findByFilters(nome, especialidade, dataNascimento, pageable);
@@ -63,5 +60,12 @@ public class MedicoService {
         medico ->
             new MedicoFilterResponse(
                 medico.getNome(), medico.getEspecialidade(), medico.getDataNascimento()));
+  }
+
+  public Medico getMedico(long id) {
+
+    return medicoRepository
+        .findById(id)
+        .orElseThrow(() -> new RuntimeException("Médico não encontrado com ID: " + id));
   }
 }

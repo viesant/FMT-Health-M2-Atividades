@@ -47,6 +47,11 @@ public class MedicoController {
     return medicoService.listarMedicos(nome, especialidade, dataNascimento, pageable);
   }
 
+  @GetMapping("{id}")
+  public Medico getMedico(@PathVariable long id) {
+    return medicoService.getMedico(id);
+  }
+
   // para testes
   @GetMapping("/all")
   public List<Medico> getAllMedicos() {
