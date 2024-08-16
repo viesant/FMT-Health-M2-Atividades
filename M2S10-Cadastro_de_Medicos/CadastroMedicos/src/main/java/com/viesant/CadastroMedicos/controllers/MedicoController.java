@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -50,6 +51,11 @@ public class MedicoController {
   @GetMapping("{id}")
   public Medico getMedico(@PathVariable long id) {
     return medicoService.getMedico(id);
+  }
+
+  @DeleteMapping("{id}")
+  public void deleteMedico(@PathVariable long id) {
+    medicoService.deleteMedico(id);
   }
 
   // para testes

@@ -68,4 +68,8 @@ public class MedicoService {
         .findById(id)
         .orElseThrow(() -> new RuntimeException("Médico não encontrado com ID: " + id));
   }
+
+  public void deleteMedico(long id) {
+    medicoRepository.deleteById(id);
+  }
 }
