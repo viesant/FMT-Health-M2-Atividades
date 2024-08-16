@@ -1,0 +1,1 @@
+https://start.spring.io/#!type=maven-project&language=java&platformVersion=3.3.2&packaging=jar&jvmVersion=21&groupId=com.viesant&artifactId=CadastroMedicos&name=CadastroMedicos&description=FMT%20-%20Projeto%20para%20atividade%20da%20semana%2010&packageName=com.viesant.CadastroMedicos&dependencies=web,data-jpa,postgresql
